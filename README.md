@@ -1,4 +1,4 @@
-L# 🤖 Local AI Assistant (Offline + Sandbox + Multi-Adapter)
+# 🤖 Local AI Assistant (Offline + Sandbox + Multi-Adapter)
 
 A fully offline, privacy-focused AI assistant powered by a local LLM (**Llama3 8B**) with modular adapters, RAG (Retrieval-Augmented Generation), and a secure sandbox execution environment.
 
