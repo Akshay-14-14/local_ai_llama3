@@ -1,145 +1,220 @@
-# 🤖 Local AI Assistant (LLaMA 3 Based)
+L# 🤖 Local AI Assistant (Offline + Sandbox + Multi-Adapter)
 
-A powerful **Local + Cloud Hybrid AI Assistant** that can run offline and optionally connect to the internet for enhanced capabilities like training, data retrieval, and updates.
+A fully offline, privacy-focused AI assistant powered by a local LLM (**Llama3 8B**) with modular adapters, RAG (Retrieval-Augmented Generation), and a secure sandbox execution environment.
 
 ---
 
 ## 🚀 Features
 
-* 🧠 **Local AI Processing**
-  Runs fully offline using local models (e.g., LLaMA 3)
+* 🔒 **100% Offline & Private** – No data leaves your system
+* 🧠 **Local LLM (Llama3 8B)** via Ollama
+* 🧩 **Multi-Adapter Architecture**
 
-* 🌐 **Cloud Integration (Optional)**
-  Connects to cloud only when needed for:
+  * Coding Assistant
+  * Automation Agent
+  * Tamil Language Support
+  * Study Assistant
+* 📚 **RAG System (FAISS + Embeddings)** for contextual answers
+* 🛡 **Sandbox Execution**
 
-  * Model improvements
-  * Data syncing
-  * Advanced queries
+  * Safe file/folder operations
+  * Script execution with confirmation
+* 💾 **Memory System (SQLite)** – Stores conversation history
+* 🧭 **Hybrid Router**
 
-* 🔌 **Internet Control System**
+  * Rule-based + LLM classification
+* ⚙️ **Command Execution**
 
-  * Enable internet only when required
-  * Fully offline mode for privacy
-
-* 📚 **RAG (Retrieval-Augmented Generation)**
-  Retrieves relevant local data for smarter responses
-
-* 🔄 **Adapter-Based Architecture**
-  Handles different tasks dynamically:
-
-  * OS operations
-  * File handling
-  * API calls
-
-* 💾 **Local Database Support**
-  Stores conversations and context locally
+  * Create/Delete/List files & folders
+  * Run Python scripts safely
 
 ---
 
-## 🏗️ Project Structure
+## 🏗 Architecture Overview
+
+```
+User Input
+   ↓
+Router (Rule + LLM)
+   ↓
+RAG (Context Retrieval)
+   ↓
+Adapter चयन
+   ↓
+Sandbox Execution / LLM Response
+   ↓
+Memory Storage (SQLite)
+```
+
+---
+
+## 📁 Project Structure
 
 ```
 local_ai/
-│── model_llm.py        # Main AI logic
-│── adapters/           # Task-specific adapters
-│── database/           # Local storage (SQLite)
-│── utils/              # Helper functions
-│── config/             # Configuration files
-│── requirements.txt    # Dependencies
+│
+├── adapters/
+│   ├── coding.py
+│   ├── automation.py
+│   ├── tamil.py
+│   └── study.py
+│
+├── data/
+│   ├── docs/        # RAG documents
+│   └── db.sqlite    # Memory database
+│
+├── workspace/       # Sandbox directory
+│
+├── main.py          # Entry point
+├── router.py        # Task routing logic
+├── rag.py           # RAG system (FAISS)
+├── sandbox.py       # Secure execution layer
+├── llm.py           # LLM interface (Ollama)
+├── memory.py        # Chat storage
+└── config.py        # Configurations
 ```
 
 ---
 
 ## ⚙️ Installation
 
-### 1. Clone the Repository
+### 1️⃣ Install Ollama
 
-```
-git clone https://github.com/Akshay-14-14/local_ai_llama3.git
-cd local_ai_llama3
-```
+Download from: https://ollama.com
 
-### 2. Create Virtual Environment
-
-```
-python -m venv venv
-venv\Scripts\activate
+```bash
+ollama pull llama3
 ```
 
-### 3. Install Dependencies
+---
 
+### 2️⃣ Install Python Dependencies
+
+```bash
+pip install faiss-cpu sentence-transformers numpy
 ```
-pip install -r requirements.txt
+
+---
+
+### 3️⃣ Setup Project
+
+```bash
+git clone <your-repo-url>
+cd local_ai
+mkdir workspace
+mkdir data/docs
 ```
 
 ---
 
 ## ▶️ Usage
 
-Run the AI:
+```bash
+cd D:\local_ai
+chcp 65001
+python main.py
+```
+
+---
+
+## 🧪 Example Commands
+
+### 📂 File & Folder Operations
 
 ```
-python model_llm.py
+create folder test
+delete folder test
+create file app.py
+list
+```
+
+### 🧠 AI Queries
+
+```
+what is java?
+explain cloud computing
+```
+
+### 💻 Coding
+
+```
+write python code for fibonacci
+```
+
+### 🌐 Tamil Support
+
+```
+explain AI in tamil
 ```
 
 ---
 
-## 🔐 Security & Privacy
+## 🔒 Security Model
 
-* Runs locally → **your data stays on your machine**
-* Cloud connection is **optional and controllable**
-* Sensitive data is **not shared unless explicitly enabled**
+* All operations are restricted to the **workspace/** directory
+* Path validation prevents directory traversal attacks
+* User confirmation required for:
 
----
-
-## ⚠️ Known Limitations
-
-* Local models may be slower than cloud models
-* Requires good system resources (RAM/CPU)
-* Cloud sync requires internet
+  * File creation
+  * Deletion
+  * Script execution
 
 ---
 
-## 🔮 Future Improvements
+## 📚 RAG (Retrieval-Augmented Generation)
 
-* ✅ Web interface (React-based UI)
-* ✅ Voice assistant integration
-* ✅ Better cloud training pipeline
-* ✅ Mobile app version
-* ✅ Plugin system for extensions
+* Uses **FAISS** for vector search
+* Embeddings via **sentence-transformers**
+* Supports:
 
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-Feel free to fork this repo and submit a pull request.
+  * Document chunking
+  * Context retrieval
+  * Local knowledge base
 
 ---
 
-## 📄 License
+## ⚡ Advantages
 
-This project is open-source and available under the **MIT License**.
+* Full privacy (offline AI)
+* No API cost
+* Highly customizable
+* System-level automation capability
+
+---
+
+## ⚠️ Limitations
+
+* No real-time internet data
+* Slower than cloud-based models
+* Requires local compute resources
+
+---
+
+## 🚀 Future Improvements
+
+* 🤖 Auto-Agent (multi-step execution)
+* 🧠 Smart memory (semantic recall)
+* 🎤 Voice assistant (offline)
+* 🖥 GUI interface
+* 🌐 Optional internet mode (toggle-based)
+* 🔁 Self-healing code execution
 
 ---
 
 ## 👨‍💻 Author
 
-**Akshay**
-Aspiring Cloud & DevOps Developer 🚀
+**Tej (Navtej S)**
+Aspiring Cloud & DevOps Developer
 
 ---
 
-## ⭐ Support
+## ⭐ Contribute
 
-If you like this project:
-
-* Star ⭐ the repo
-* Share it with others
-* Contribute to improve it
+Pull requests are welcome!
+Feel free to improve adapters, routing, or UI.
 
 ---
 
-## 💡 Vision
+## 📜 License
 
-To build a **privacy-first AI assistant** that combines the power of **local intelligence + cloud scalability**, giving users full control over their data and AI experience.
+This project is open-source and available under the MIT License.
