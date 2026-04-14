@@ -1,2 +1,3 @@
 # local_ai_llama3
-it is a private local ai which is uesd even without internet.
+It is a private local ai which is uesd even without internet.
+It is improved with fine tuning method and adaptor function.
