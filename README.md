@@ -203,7 +203,7 @@ explain AI in tamil
 
 ## 👨‍💻 Author
 
-**Tej (Navtej S)**
+**Akshay. S**
 Aspiring Cloud & DevOps Developer
 
 ---
